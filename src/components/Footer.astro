@@ -1,0 +1,20 @@
+---
+import { site, withBase } from '../data/site';
+---
+
+<div class="invert">
+  <div class="container">
+    <footer class="footer">
+      <span>© 2026 {site.name}</span>
+      <span>Built with Astro — Space Grotesk / Space Mono</span>
+      <a href={withBase('/alt')}>Minimal version</a>
+      <a href="#main-content">Back to top ↑</a>
+
+      <!-- Hanging monogram: draggable pendulum easter egg (decorative) -->
+      <div class="hang" data-hanging aria-hidden="true">
+        <span class="hang-string"></span>
+        <span class="hang-tag">IA</span>
+      </div>
+    </footer>
+  </div>
+</div>

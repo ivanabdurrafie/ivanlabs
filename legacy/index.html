@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivan Abdurrafie | Backend Developer</title>
+    <meta name="description" content="Backend Developer specializing in microservices and scalable enterprise systems. 3+ years experience with C#, .NET Core, and Golang.">
+    <meta property="og:title" content="Ivan Abdurrafie | Backend Developer">
+    <meta property="og:description" content="Backend Developer specializing in microservices and scalable enterprise systems. 3+ years experience with C#, .NET Core, and Golang.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ivan-abdurrafie.github.io/modern-portfolio/">
+    <meta name="robots" content="index, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>IA</text></svg>">
+    <link rel="canonical" href="https://ivan-abdurrafie.github.io/modern-portfolio/">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.js"></script>
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Skip Navigation Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Scroll Progress Bar -->
+    <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
+    <!-- TOP NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">IA</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#metrics" class="nav-link">Impact</a>
+            <a href="#capabilities" class="nav-link">Expertise</a>
+            <a href="#systems" class="nav-link">Projects</a>
+            <a href="#timeline" class="nav-link">Timeline</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#connect" class="nav-link">Connect</a>
+        </div>
+        <button class="nav-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span class="icon-sun"><i data-lucide="sun" width="16" height="16"></i></span>
+            <span class="icon-moon"><i data-lucide="moon" width="16" height="16"></i></span>
+        </button>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="main-content">
+    <!-- HERO - vw-Scaled Typography -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-tagline">
+                    <span class="tag">Backend Engineer</span>
+                    <span class="availability-badge">
+                        <span class="availability-dot"></span>
+                        Available for opportunities
+                    </span>
+                </div>
+                <h1 class="hero-title" id="heroTitle">
+                    <span class="title-line-wrap"><span class="title-line" data-split>BUILDING</span></span>
+                    <span class="title-line-wrap"><span class="title-line highlighted" data-split>ENTERPRISE</span></span>
+                    <span class="title-line-wrap"><span class="title-line" data-split>SYSTEMS</span></span>
+                </h1>
+                <!-- Swiss Multi-Column Subtitle -->
+                <div class="hero-subtitle-grid">
+                    <div class="hero-subtitle-col">
+                        Backend Engineer specializing in .NET, Golang, and scalable microservices architecture.
+                    </div>
+                    <div class="hero-subtitle-col">
+                        3+ years building high-performance distributed systems with enterprise scale.
+                    </div>
+                    <div class="hero-subtitle-col">
+                        Proven ability to thrive in agile teams and reduce technical debt.
+                    </div>
+                </div>
+                <!-- Actions pushed to edges -->
+                <div class="hero-actions">
+                    <a href="#systems" class="btn btn-primary">View Projects</a>
+                    <a href="Ivan_Abdurrafie_Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Download CV</a>
+                    <a href="#connect" class="btn btn-secondary">Connect</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT STRIP - Inverted Block -->
+    <section id="metrics" class="metrics-strip">
+        <div class="metrics-grid">
+            <div class="stat-item">
+                <div class="stat-number">3+</div>
+                <div class="stat-label">Years Experience</div>
+                <div class="stat-context">Since 2022</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">40%</div>
+                <div class="stat-label">Query Performance</div>
+                <div class="stat-context">Faster DB response via CQRS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Core Services Optimized</div>
+                <div class="stat-context">Reducing technical debt across enterprise systems</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT - Swiss Layout -->
+    <section id="about" class="section">
+        <div class="section-header">
+            <h2 class="section-title">About</h2>
+        </div>
+        <div class="about-content">
+            <p class="about-text lead">Backend Developer with 3+ years of experience building high-concurrency, enterprise-scale systems.</p>
+            <p class="about-text">Specialized in microservices architecture and CQRS patterns using C# and .NET Core within large corporate environments.</p>
+            <p class="about-text">Actively expanding into Golang to build faster, more efficient backend services for high-traffic applications.</p>
+            <p class="about-text">Proven ability to thrive in agile teams, proactively solve complex integration challenges, and keep systems reliable while reducing technical debt.</p>
+        </div>
+    </section>
+
+    <!-- EXPERTISE - Bento-Box Layout -->
+    <section id="capabilities" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Expertise</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i data-lucide="server" width="24" height="24"></i>
+                </div>
+                <h3 class="skill-category">Backend</h3>
+                <div class="skill-list">
+                    <span class="skill-badge">C#</span>
+                    <span class="skill-badge">Golang</span>
+                    <span class="skill-badge">.NET Core</span>
+                    <span class="skill-badge">Entity Framework</span>
+                    <span class="skill-badge">REST APIs</span>
+                    <span class="skill-badge">Microservices</span>
+                    <span class="skill-badge">CQRS</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i data-lucide="layout-grid" width="24" height="24"></i>
+                </div>
+                <h3 class="skill-category">Architecture</h3>
+                <div class="skill-list">
+                    <span class="skill-badge">System Design</span>
+                    <span class="skill-badge">Distributed</span>
+                    <span class="skill-badge">Relational Database Design</span>
+                    <span class="skill-badge">API Integration</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i data-lucide="database" width="24" height="24"></i>
+                </div>
+                <h3 class="skill-category">Database</h3>
+                <div class="skill-list">
+                    <span class="skill-badge">PostgreSQL</span>
+                    <span class="skill-badge">Redis</span>
+                    <span class="skill-badge">SQL</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i data-lucide="search" width="24" height="24"></i>
+                </div>
+                <h3 class="skill-category">Tools</h3>
+                <div class="skill-list">
+                    <span class="skill-badge">Git</span>
+                    <span class="skill-badge">Docker</span>
+                    <span class="skill-badge">Azure</span>
+                    <span class="skill-badge">Agile Development</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS - Asymmetric Layout -->
+    <section id="systems" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Featured Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card" role="article" aria-labelledby="project-1-title" tabindex="0">
+                <div class="project-header">
+                    <div class="project-header-left">
+                        <div class="project-icon">
+                            <i data-lucide="zap" width="24" height="24"></i>
+                        </div>
+                        <h3 class="project-title" id="project-1-title">Fitness AI Integration Service</h3>
+                    </div>
+                    <div class="project-metric">
+                        <div class="metric-value">3x</div>
+                        <div class="metric-label">Faster Processing</div>
+                    </div>
+                </div>
+                <div class="project-meta">
+                    <span class="project-type">Backend Service</span>
+                    <span class="project-stack">Golang</span>
+                </div>
+                <p class="project-description">Personal project exploring Golang backend architecture. Built a service orchestrating Strava API, LLM endpoints, and Telegram bot. Implemented concurrent request handling and caching strategies, achieving 3x faster processing compared to sequential API calls.</p>
+                <div class="project-business-impact">
+                    <strong>What I Learned:</strong> Hands-on experience with Go concurrency patterns (goroutines, channels), API integration design, and building resilient external service orchestration.
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">Golang</span>
+                    <span class="tech-tag">REST APIs</span>
+                    <span class="tech-tag">LLM</span>
+                    <span class="tech-tag">Strava API</span>
+                    <span class="tech-tag">Telegram Bot</span>
+                </div>
+            </div>
+            
+            <div class="project-card" role="article" aria-labelledby="project-2-title">
+                <div class="project-header">
+                    <div class="project-header-left">
+                        <div class="project-icon">
+                            <i data-lucide="layers" width="24" height="24"></i>
+                        </div>
+                        <h3 class="project-title" id="project-2-title">Enterprise Microservices Architecture</h3>
+                    </div>
+                    <div class="project-metric">
+                        <div class="metric-value">40%</div>
+                        <div class="metric-label">Faster Queries</div>
+                    </div>
+                </div>
+                <div class="project-meta">
+                    <span class="project-type">Backend System</span>
+                    <span class="project-stack">C# / .NET Core</span>
+                </div>
+                <p class="project-description">Built and maintained backend microservices using C# and .NET Core for enterprise applications handling thousands of daily operations. Implemented CQRS patterns to separate read/write concerns, improving system scalability and maintainability.</p>
+                <div class="project-business-impact">
+                    <strong>Business Impact:</strong> Reduced database load by 40%, enabling the system to handle 2x more concurrent users without infrastructure upgrades.
+                </div>
+                <div class="project-technical-approach">
+                    <h4 class="approach-title">Technical Approach</h4>
+                    <div class="approach-content">
+                        <p><strong>The Problem:</strong> Enterprise applications handling thousands of daily operations were experiencing database bottlenecks. Read and write operations competed for the same resources, causing query response times to degrade under load.</p>
+                        <p><strong>Why CQRS:</strong> Instead of optimizing individual queries, I separated read and write concerns at the architecture level. Command handlers write to normalized tables optimized for consistency, while query handlers read from denormalized views optimized for speed. This eliminated the read/write contention that was the root cause.</p>
+                        <p><strong>Implementation:</strong> Built event-driven synchronization between write and read models using message queues. Write operations publish domain events; read model subscribers update materialized views asynchronously. This trades slight eventual consistency for significant performance gains — acceptable for our read-heavy workload.</p>
+                        <p><strong>Result:</strong> 40% reduction in query response times, 2x more concurrent users without infrastructure upgrades. The separation also made the codebase more maintainable — teams could independently optimize read and write paths without coordination.</p>
+                    </div>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">.NET Core</span>
+                    <span class="tech-tag">Microservices</span>
+                    <span class="tech-tag">CQRS</span>
+                    <span class="tech-tag">Entity Framework</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+            </div>
+            
+            <div class="project-card" role="article" aria-labelledby="project-3-title">
+                <div class="project-header">
+                    <div class="project-header-left">
+                        <div class="project-icon">
+                            <i data-lucide="trending-up" width="24" height="24"></i>
+                        </div>
+                        <h3 class="project-title" id="project-3-title">Performance Optimization Initiative</h3>
+                    </div>
+                    <div class="project-metric">
+                        <div class="metric-value">3</div>
+                        <div class="metric-label">Services Optimized</div>
+                    </div>
+                </div>
+                <div class="project-meta">
+                    <span class="project-type">System Improvement</span>
+                    <span class="project-stack">C# / SQL</span>
+                </div>
+                <p class="project-description">Proactively identified performance bottlenecks through profiling and query analysis. Refactored legacy code and optimized database queries, improving system maintainability while reducing technical debt across 3 core services.</p>
+                <div class="project-business-impact">
+                    <strong>Business Impact:</strong> Reduced technical debt across 3 core services, improving system maintainability and decreasing incident response time by 30%.
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">SQL</span>
+                    <span class="tech-tag">Unit Testing</span>
+                    <span class="tech-tag">Refactoring</span>
+                    <span class="tech-tag">Performance Profiling</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE - Horizontal Data Table -->
+    <section id="timeline" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Engineering Timeline</h2>
+        </div>
+        <table class="timeline-table">
+            <tr class="timeline-row">
+                <td class="timeline-cell timeline-date-cell">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-date-small">— PRESENT</div>
+                </td>
+                <td class="timeline-cell timeline-role-cell">
+                    <div class="timeline-role">Backend Developer</div>
+                    <div class="timeline-company">United Tractors (Astra Group)</div>
+                </td>
+                <td class="timeline-cell timeline-details-cell">
+                    <ul class="timeline-list">
+                        <li>Built and maintained backend microservices using C# and .NET Core for enterprise applications</li>
+                        <li>Implemented CQRS patterns, improving database query response times by ~40%</li>
+                    </ul>
+                </td>
+                <td class="timeline-cell timeline-metric-cell">
+                    <div class="timeline-metric">40%</div>
+                    <div class="timeline-metric-label">Perf</div>
+                </td>
+            </tr>
+            <tr class="timeline-row">
+                <td class="timeline-cell timeline-date-cell">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-date-small">— 2022</div>
+                </td>
+                <td class="timeline-cell timeline-role-cell">
+                    <div class="timeline-role">Web Developer Intern</div>
+                    <div class="timeline-company">Perum Jasa Tirta I</div>
+                </td>
+                <td class="timeline-cell timeline-details-cell">
+                    <ul class="timeline-list">
+                        <li>Contributed to development of internal web applications, focusing on backend logic and database optimization</li>
+                        <li>Collaborated with senior developers to optimize performance, improving data retrieval times by ~15%</li>
+                    </ul>
+                </td>
+                <td class="timeline-cell timeline-metric-cell">
+                    <div class="timeline-metric">15%</div>
+                    <div class="timeline-metric-label">Perf</div>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- EDUCATION - Added to align with CV -->
+    <section id="education" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Education</h2>
+        </div>
+        <div class="education-content">
+            <div class="education-item">
+                <div class="education-item-left">
+                    <div class="education-degree">Diploma 4 (D4), Informatics Engineering</div>
+                    <div class="education-school">Politeknik Negeri Malang</div>
+                    <div class="education-year">Graduated 2022</div>
+                </div>
+                <div class="education-gpa">
+                    <div class="gpa-value">3.73</div>
+                    <div class="gpa-label">GPA / 4.00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONNECT - Minimal -->
+    <section id="connect" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Connect</h2>
+        </div>
+        <div class="contact-links">
+            <a href="mailto:iabdurrafie.work@gmail.com" class="contact-link">
+                <span class="contact-label">Email</span>
+                <span class="contact-value">iabdurrafie.work@gmail.com</span>
+            </a>
+            <a href="https://github.com/ivanabdurrafie" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value">@ivanabdurrafie</span>
+            </a>
+            <a href="https://linkedin.com/in/ivan-abdurrafie" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value">ivan-abdurrafie</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 Ivan Abdurrafie</p>
+    </footer>
+
+    </main>
+
+    <script defer src="script.js"></script>
+    <!-- GoatCounter Analytics (Privacy-first) -->
+    <script defer data-goatcounter="https://ivan-abdurrafie.goatcounter.com/count"
+            src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

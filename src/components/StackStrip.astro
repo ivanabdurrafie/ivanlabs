@@ -1,0 +1,18 @@
+---
+import { skills } from '../data/site';
+
+/* Compact keyword row for the home page — flattened from the full Expertise grid
+   on /about, so it can never drift out of sync with the source data. */
+const stack = [...new Set(skills.flatMap((group) => group.skills))];
+---
+
+<section class="section stack-strip" aria-label="Stack">
+  <div class="container">
+    <div class="stack-row" data-reveal>
+      <span class="stack-label mono">Stack</span>
+      <div class="stack-list">
+        {stack.map((skill) => <span class="stack-item">{skill}</span>)}
+      </div>
+    </div>
+  </div>
+</section>

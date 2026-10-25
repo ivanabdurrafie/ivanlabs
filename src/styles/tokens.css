@@ -1,0 +1,83 @@
+/* ============================================
+   Design tokens — the whole design lives here.
+   Strict B/W + one surgical accent (signal green).
+   ============================================ */
+
+:root {
+  color-scheme: light;
+
+  /* --- Color: light (default) --- */
+  --paper: #fafafa;
+  --ink: #0a0a0a;
+  --surface: hsl(0 0% 0% / 0.035);
+  --surface-2: hsl(0 0% 0% / 0.06);
+  --line: hsl(0 0% 0% / 0.14);
+  --line-strong: hsl(0 0% 0% / 0.55);
+  --muted: hsl(0 0% 0% / 0.58);
+  --inverse-bg: #0a0a0a;
+  --inverse-ink: #fafafa;
+  --inverse-line: hsl(0 0% 100% / 0.18);
+  --inverse-muted: hsl(0 0% 100% / 0.6);
+
+  /* --- Accent: used on <5% of pixels (fills, dots, dark-bg text) --- */
+  --accent: #d3ff3f;
+  --accent-ink: #0a0a0a; /* text on accent fills */
+  --accent-dim: hsl(75 100% 50% / 0.35);
+
+  /* --- Type --- */
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --text-display: clamp(3rem, 11.5vw, 8.75rem);
+  --text-h2: clamp(2rem, 4.5vw, 3.25rem);
+  --text-h3: clamp(1.2rem, 2vw, 1.5rem);
+  --text-body: clamp(1rem, 1.05vw, 1.125rem);
+  --text-lead: clamp(1.2rem, 2.2vw, 1.6rem);
+  --text-mono: 0.8125rem;
+  --text-mono-xs: 0.6875rem;
+
+  --tracking-display: -0.045em;
+  --tracking-tight: -0.02em;
+  --tracking-mono: 0.08em;
+
+  --leading-display: 0.92;
+  --leading-body: 1.6;
+
+  /* --- Space & layout --- */
+  --container: 76rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --space-section: clamp(4.5rem, 10vh, 8rem);
+  --space-block: clamp(2rem, 4vw, 3.5rem);
+  --nav-h: 4.25rem;
+  --radius: 0; /* brutalist: sharp corners */
+
+  /* --- Motion vocabulary --- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.18s;
+  --dur-med: 0.45s;
+  --dur-slow: 0.9s;
+
+  --z-hud: 40;
+  --z-nav: 60;
+  --z-progress: 70;
+  --z-palette: 90;
+  --z-grain: 100;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --paper: #0a0a0a;
+  --ink: #f2f2f2;
+  --surface: hsl(0 0% 100% / 0.05);
+  --surface-2: hsl(0 0% 100% / 0.08);
+  --line: hsl(0 0% 100% / 0.16);
+  --line-strong: hsl(0 0% 100% / 0.5);
+  --muted: hsl(0 0% 100% / 0.6);
+  --inverse-bg: #f2f2f2;
+  --inverse-ink: #0a0a0a;
+  --inverse-line: hsl(0 0% 0% / 0.16);
+  --inverse-muted: hsl(0 0% 0% / 0.55);
+}

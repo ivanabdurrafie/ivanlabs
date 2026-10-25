@@ -1,0 +1,104 @@
+---
+import Minimal from '../../layouts/Minimal.astro';
+import { site, about, skills, experience, education, faq } from '../../data/site';
+
+const description = `Background, experience and education of ${site.name} — ${site.role} with 3+ years building enterprise-scale systems.`;
+---
+
+<Minimal title="About" description={description}>
+  <header class="m-ph m-container">
+    <span class="label">About</span>
+    <h1>About</h1>
+    <hr class="m-rule" />
+    <div class="m-prose" style="margin-top: 2rem;" data-reveal>
+      {about.map((p) => <p class={p.lead ? 'm-lead' : undefined} style={p.lead ? undefined : 'margin-top: 1.1rem;'}>{p.text}</p>)}
+    </div>
+  </header>
+
+  <section class="m-section m-container" id="expertise">
+    <div class="m-head" data-reveal>
+      <span class="m-idx label">01</span>
+      <h2>Expertise</h2>
+    </div>
+    <dl class="m-groups" data-reveal>
+      {
+        skills.map((group) => (
+          <div class="m-group">
+            <dt>{group.category}</dt>
+            <dd>{group.skills.join(' · ')}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="m-section m-container" id="timeline">
+    <div class="m-head" data-reveal>
+      <span class="m-idx label">02</span>
+      <h2>Engineering timeline</h2>
+    </div>
+    <div class="m-tl" data-reveal>
+      {
+        experience.map((job) => (
+          <div class="m-tl-row">
+            <div class="m-tl-when">
+              {job.from}
+              <br />
+              — {job.to}
+            </div>
+            <div>
+              <div class="m-tl-role">{job.role}</div>
+              <div class="m-tl-company">{job.company}</div>
+              <ul class="m-tl-hi">
+                {job.highlights.map((h) => (
+                  <li>{h}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="m-tl-metric">
+              <b>{job.metric}</b>
+              <span>{job.metricLabel}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="m-section m-container" id="education">
+    <div class="m-head" data-reveal>
+      <span class="m-idx label">03</span>
+      <h2>Education</h2>
+    </div>
+    <div class="m-edu" data-reveal>
+      <div>
+        <div class="m-edu-degree">{education.degree}</div>
+        <div class="m-edu-meta">
+          <span>{education.school}</span>
+          <span>{education.year}</span>
+        </div>
+      </div>
+      <div class="m-edu-gpa">
+        <b>{education.gpa}</b>
+        <span>GPA / 4.00</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section m-container" id="faq">
+    <div class="m-head" data-reveal>
+      <span class="m-idx label">04</span>
+      <h2>FAQ</h2>
+    </div>
+    <div class="m-faq" data-reveal>
+      {
+        faq.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p class="faq-answer">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+</Minimal>

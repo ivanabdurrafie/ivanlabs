@@ -1,0 +1,25 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# environment
+.env
+.env.production
+
+# logs
+npm-debug.log*
+*.log
+
+# QA output (scripts in qa/ are kept)
+qa/shots/
+qa/*.json
+
+# Claude Code project-local files
+.claude/
+
+# editor
+.vscode/
+.DS_Store

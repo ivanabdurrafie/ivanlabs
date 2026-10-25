@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { ArrowRight, Zap, Layers, TrendingUp } from '@lucide/astro';
+import { withBase } from '../data/site';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, type, stack, metric, metricLabel, summary, impact, tech, icon } = project.data;
+
+const iconMap: Record<string, typeof Zap> = { zap: Zap, layers: Layers, 'trending-up': TrendingUp };
+const Icon = iconMap[icon] ?? Zap;
+---
+
+<article class="project-card" data-reveal>
+  <a
+    href={withBase(`/work/${project.id}`)}
+    class="project-hit"
+    aria-label={`Read the ${title} case study`}
+  >
+    <div class="project-header">
+      <div class="project-header-left">
+        <div class="project-icon">
+          <Icon size={22} aria-hidden="true" />
+        </div>
+        <h3 class="project-title">{title}</h3>
+      </div>
+      <div class="project-metric">
+        <div class="metric-value">{metric}</div>
+        <div class="metric-label">{metricLabel}</div>
+      </div>
+    </div>
+
+    <div class="project-meta">
+      <span class="project-type">{type}</span>
+      <span class="project-stack">{stack}</span>
+    </div>
+
+    <p class="project-description">{summary}</p>
+
+    <div class="project-impact">
+      <strong>What I Learned</strong>
+      {impact}
+    </div>
+
+    <div class="project-tech">
+      {tech.map((tag) => <span class="tech-tag">{tag}</span>)}
+    </div>
+
+    <span class="project-link">
+      Read case study <ArrowRight class="arrow" size={14} aria-hidden="true" />
+    </span>
+  </a>
+</article>

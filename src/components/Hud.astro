@@ -1,0 +1,16 @@
+---
+import { site } from '../data/site';
+
+const tzLabel = site.timezone === 'Asia/Jakarta' ? 'WIB' : site.timezone;
+---
+
+<div class="hud hud-left" aria-hidden="true">
+  <span class="hud-dot"></span>
+  <span>{tzLabel}</span>
+  <b id="hudClock">--:--:--</b>
+</div>
+
+<div class="hud hud-right" aria-hidden="true">
+  <span>Scroll</span>
+  <b id="hudScroll">000%</b>
+</div>

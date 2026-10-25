@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import Minimal from '../../../layouts/Minimal.astro';
+import { site, withBase } from '../../../data/site';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const { title, type, stack, metric, metricLabel, summary, impact, tech } = project.data;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: summary,
+  author: {
+    '@type': 'Person',
+    name: site.name,
+    url: site.url,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: site.name,
+  },
+  mainEntityOfPage: `${site.url}/alt/work/${project.id}`,
+};
+---
+
+<Minimal title={title} description={summary} jsonLd={jsonLd}>
+  <article class="m-doc m-container">
+    <a href={withBase('/alt/work')} class="m-back">← All work</a>
+
+    <div class="m-meta" data-reveal>
+      <span class="label">{type}</span>
+      <span class="label">{stack}</span>
+    </div>
+
+    <h1 data-reveal>{title}</h1>
+
+    <div class="m-metrics" data-reveal style="--reveal-delay: 90ms">
+      <div class="m-doc-metric">
+        <b>{metric}</b>
+        <span>{metricLabel}</span>
+      </div>
+      <div class="m-doc-metric m-doc-metric--ctx">
+        <b>{stack}</b>
+        <span>Stack</span>
+      </div>
+      <div class="m-doc-metric m-doc-metric--ctx">
+        <b>2022 — Present</b>
+        <span>Year</span>
+      </div>
+    </div>
+
+    <p class="m-doc-lead" data-reveal>{summary}</p>
+
+    <div class="m-outcome" data-reveal>
+      <span class="label">Outcome</span>
+      <p>{impact}</p>
+    </div>
+
+    <div class="m-body m-prose" data-reveal>
+      <Content />
+    </div>
+
+    <div class="m-tech" data-reveal>
+      {tech.map((tag) => <span>{tag}</span>)}
+    </div>
+
+    <div class="m-cta" data-reveal>
+      <a href={withBase('/alt/work')} class="m-link-strong">← All projects</a>
+      <a href={`mailto:${site.email}`} class="m-link-strong">Discuss a project →</a>
+    </div>
+  </article>
+</Minimal>

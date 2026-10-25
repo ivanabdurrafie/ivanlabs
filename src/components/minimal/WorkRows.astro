@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import { withBase } from '../../data/site';
+
+/** Case studies as ruled rows — no cards, the whole row is the link. */
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<ul class="m-rows">
+  {
+    projects.map((p, i) => (
+      <li class="m-row" data-reveal style={`--reveal-delay: ${i * 70}ms`}>
+        <span class="m-row-idx">{String(i + 1).padStart(2, '0')}</span>
+        <span class="m-row-main">
+          <a class="m-row-title" href={withBase(`/alt/work/${p.id}`)}>
+            {p.data.title}
+          </a>
+          <span class="m-row-sub">
+            {p.data.type} · {p.data.stack}
+          </span>
+        </span>
+        <span class="m-row-metric">
+          {p.data.metric} <em>{p.data.metricLabel}</em>
+        </span>
+        <span class="m-row-arrow" aria-hidden="true">→</span>
+      </li>
+    ))
+  }
+</ul>

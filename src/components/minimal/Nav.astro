@@ -1,0 +1,64 @@
+---
+import { Sun, Moon, Search, Menu, X } from '@lucide/astro';
+import { withBase } from '../../data/site';
+
+/** /alt routes only — index numbers dropped for the quiet skin. */
+const items = [
+  { href: '/alt', label: 'Home' },
+  { href: '/alt/work', label: 'Work' },
+  { href: '/alt/about', label: 'About' },
+  { href: '/alt/#connect', label: 'Connect' },
+];
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const here = Astro.url.pathname.replace(/\/$/, '') || basePath;
+const altRoot = withBase('/alt').replace(/\/$/, '');
+
+/** Active = prefix match so /alt/work/* counts as Work; anchors never highlight. */
+const isActive = (href: string): boolean => {
+  if (href.includes('#')) return false;
+  const clean = withBase(href).replace(/\/$/, '');
+  if (clean === altRoot) return here === altRoot;
+  return here === clean || here.startsWith(clean + '/');
+};
+---
+
+<nav class="min-nav" aria-label="Primary">
+  <a href={withBase('/alt')} class="min-logo" aria-label="IA — Ivan Abdurrafie, minimal home">IA<em>.</em></a>
+
+  <div class="min-links" id="navLinks">
+    {
+      items.map((item) => (
+        <a
+          href={withBase(item.href)}
+          class:list={['nav-link', { active: isActive(item.href) }]}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="min-actions">
+    <button class="min-icon" id="paletteBtn" aria-label="Open command menu">
+      <Search size={15} aria-hidden="true" />
+    </button>
+
+    <button class="min-icon" id="themeToggle" aria-label="Toggle dark mode">
+      <span class="icon-sun"><Sun size={15} aria-hidden="true" /></span>
+      <span class="icon-moon"><Moon size={15} aria-hidden="true" /></span>
+    </button>
+
+    <button
+      class="min-menu"
+      id="hamburger"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="navLinks"
+    >
+      <span class="icon-menu"><Menu size={16} aria-hidden="true" /></span>
+      <span class="icon-close"><X size={16} aria-hidden="true" /></span>
+    </button>
+  </div>
+</nav>

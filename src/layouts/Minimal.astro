@@ -1,0 +1,163 @@
+---
+/**
+ * Swiss-minimal shell (the /alt variant).
+ * Same SEO/JSON-LD/scripts as Base — quieter chrome: no HUD, no marquee,
+ * no hanging tag. noindexed so the brutalist pages stay canonical.
+ */
+import '../styles/tokens.css';
+import '../styles/minimal.css';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource/space-mono/400.css';
+import '@fontsource/space-mono/700.css';
+import { ClientRouter } from 'astro:transitions';
+
+import { site, education } from '../data/site';
+import { getPaletteItems } from '../data/palette';
+import MinNav from '../components/minimal/Nav.astro';
+import MinFooter from '../components/minimal/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description = site.tagline, jsonLd } = Astro.props;
+
+const pageTitle = title ? `${title} | ${site.name} · Minimal` : `${site.name} | ${site.role}`;
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const pagePath = Astro.url.pathname.replace(basePath, '').replace(/\/$/, '') || '/';
+// /alt is the same content in a different skin — each page canonicalizes
+// to its brutalist twin so search consolidates on that family.
+const mainPath = pagePath.replace(/^\/alt(?=\/|$)/, '') || '/';
+const canonical = `${site.url}${mainPath}`;
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.role,
+  url: canonical,
+  email: `mailto:${site.email}`,
+  sameAs: [site.github, site.linkedin],
+  worksFor: { '@type': 'Organization', name: 'United Tractors (Astra Group)' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: education.school },
+  knowsAbout: ['C#', '.NET Core', 'Golang', 'Microservices', 'CQRS', 'PostgreSQL', 'REST APIs'],
+};
+
+const structuredData = jsonLd ?? personJsonLd;
+
+// Palette routes everything into the /alt family
+const paletteItems = await getPaletteItems(basePath, '/alt');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={site.locale} />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='68' font-size='46' font-family='monospace' font-weight='bold' fill='%23d3ff3f' text-anchor='middle'>IA</text></svg>"
+    />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+
+    <!-- Set .js + theme before first paint (no FOUC) -->
+    <script is:inline>
+      (() => {
+        document.documentElement.classList.add('js');
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        } catch (e) {
+          /* storage unavailable — keep light default */
+        }
+      })();
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <ClientRouter />
+  </head>
+
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <MinNav />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <MinFooter />
+
+    <!-- Command palette (⌘K) -->
+    <div class="palette-overlay" id="paletteOverlay" role="dialog" aria-modal="true" aria-label="Command menu">
+      <div class="palette">
+        <input
+          class="palette-input"
+          id="paletteInput"
+          type="text"
+          placeholder="Search pages & projects…"
+          autocomplete="off"
+          spellcheck="false"
+          aria-controls="paletteResults"
+          aria-expanded="true"
+        />
+        <div class="palette-results" id="paletteResults" role="listbox" aria-label="Results">
+          {
+            paletteItems.map((item) => (
+              <a
+                class="palette-item"
+                role="option"
+                aria-selected="false"
+                data-palette-item
+                href={item.href}
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
+                <span class="idx" aria-hidden="true">{item.idx}</span>
+                <span>{item.label}</span>
+                <span class="kind">{item.kind}</span>
+              </a>
+            ))
+          }
+          <div class="palette-empty" id="paletteEmpty" hidden>No matches</div>
+        </div>
+        <div class="palette-footer">
+          <span>↑↓ Navigate</span>
+          <span>↵ Open</span>
+          <span>Esc Close</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Privacy-first analytics -->
+    <script
+      is:inline
+      defer
+      data-goatcounter={site.goatcounter}
+      src="https://gc.zgo.at/count.js"></script>
+
+    <script src="../scripts/main.ts"></script>
+  </body>
+</html>

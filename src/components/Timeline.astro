@@ -1,0 +1,41 @@
+---
+import { experience } from '../data/site';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section id="timeline" class="section">
+  <div class="container">
+    <SectionHeader index="02" title="Engineering Timeline" />
+
+    <div class="timeline">
+      {
+        experience.map((role, i) => (
+          <div class="timeline-row" data-reveal style={`--reveal-delay: ${i * 120}ms`}>
+            <div class="timeline-date-cell">
+              <div class="timeline-date">{role.from}</div>
+              <div class="timeline-date-small">— {role.to}</div>
+            </div>
+
+            <div class="timeline-role-cell">
+              <div class="timeline-role">{role.role}</div>
+              <div class="timeline-company">{role.company}</div>
+            </div>
+
+            <div class="timeline-details-cell">
+              <ul class="timeline-list">
+                {role.highlights.map((h) => (
+                  <li>{h}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="timeline-metric-cell">
+              <div class="timeline-metric">{role.metric}</div>
+              <div class="timeline-metric-label">{role.metricLabel}</div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import { hero, metrics, site, withBase } from '../data/site';
+---
+
+<section id="hero" class="hero">
+  <div class="container hero-content">
+    <div class="hero-tagline">
+      <span class="chip">{hero.tagline}</span>
+      <span class="chip">
+        <span class="availability-dot" aria-hidden="true"></span>
+        {site.availability}
+      </span>
+    </div>
+
+    <h1 class="hero-title" id="heroTitle" aria-label="Building enterprise systems">
+      {
+        hero.lines.map((line, i) => (
+          <span class="title-line-wrap">
+            <span
+              class:list={['title-line', { accent: line.accent }]}
+              data-split
+              style={`--line-i: ${i}`}
+            >
+              {line.text}
+            </span>
+          </span>
+        ))
+      }
+    </h1>
+
+    <div class="hero-subtitle-grid">
+      {
+        hero.columns.map((col, i) => (
+          <div class="hero-subtitle-col" data-reveal style={`--reveal-delay: ${500 + i * 110}ms`}>
+            {col}
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Impact numbers folded into the hero — proof lands above the fold */}
+    <div class="hero-metrics invert" data-reveal style="--reveal-delay: 700ms">
+      <div class="metrics-grid">
+        {
+          metrics.map((stat, i) => (
+            <div class="stat-item" style={`--reveal-delay: ${i * 120}ms`}>
+              <div class="stat-number" data-count={stat.value} data-suffix={stat.suffix}>
+                {stat.suffix ? `${stat.value}${stat.suffix}` : stat.value}
+              </div>
+              <div class="stat-label">{stat.label}</div>
+              <div class="stat-context">{stat.context}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="hero-actions" data-reveal style="--reveal-delay: 850ms">
+      <a href={withBase('/work')} class="btn btn-primary">
+        View Projects <ArrowRight class="arrow" size={14} aria-hidden="true" />
+      </a>
+      <a href={withBase(site.resumeFile)} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+        Download CV
+      </a>
+      <a href="#connect" class="btn btn-secondary">Connect</a>
+    </div>
+  </div>
+</section>

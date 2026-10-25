@@ -1,0 +1,21 @@
+---
+import { faq } from '../data/site';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section id="faq" class="section">
+  <div class="container">
+    <SectionHeader index="04" title="FAQ" />
+
+    <div class="faq-list" data-reveal>
+      {
+        faq.map((item) => (
+          <details class="faq-item">
+            <summary>{item.q}</summary>
+            <p class="faq-answer">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

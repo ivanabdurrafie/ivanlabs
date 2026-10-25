@@ -1,0 +1,25 @@
+---
+import { ArrowLeft } from '@lucide/astro';
+import Base from '../layouts/Base.astro';
+import { withBase } from '../data/site';
+---
+
+<Base title="404" description="Page not found.">
+  <section class="hero" style="min-height: 80dvh;">
+    <div class="container hero-content">
+      <span class="chip">Error 404</span>
+      <h1 class="hero-title" style="font-size: clamp(4rem, 18vw, 12rem);">
+        <span class="title-line-wrap"><span class="title-line accent" style="--line-i: 0;">LOST</span></span>
+        <span class="title-line-wrap"><span class="title-line" style="--line-i: 1;">ROUTE</span></span>
+      </h1>
+      <p class="about-text lead" data-reveal style="max-width: 36rem;">
+        This endpoint doesn't exist. The architecture is fine — the URL just isn't.
+      </p>
+      <div class="hero-actions" data-reveal style="--reveal-delay: 200ms;">
+        <a href={withBase('/')} class="btn btn-primary">
+          <ArrowLeft size={14} aria-hidden="true" /> Back home
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

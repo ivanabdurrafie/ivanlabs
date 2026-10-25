@@ -1,0 +1,47 @@
+---
+import { ArrowUpRight } from '@lucide/astro';
+import { site } from '../data/site';
+import SectionHeader from './SectionHeader.astro';
+
+const links = [
+  { label: 'Email', value: site.email, href: `mailto:${site.email}` },
+  { label: 'GitHub', value: '@ivanabdurrafie', href: site.github },
+  { label: 'LinkedIn', value: 'ivan-abdurrafie', href: site.linkedin },
+];
+---
+
+<section id="connect" class="section invert">
+  <div class="container">
+    <SectionHeader index="02" title="Connect" />
+
+    <div data-reveal>
+      <p class="muted mono" style="margin-bottom: 1.25rem;">Start a conversation</p>
+      <!-- click = open mail client (mailto) AND copy address to clipboard -->
+      <a
+        class="connect-email"
+        href={`mailto:${site.email}`}
+        data-copy-email={site.email}
+        aria-label={`Email ${site.email} — copies address to clipboard`}>{site.email}</a
+      >
+    </div>
+
+    <div class="contact-links" data-reveal style="--reveal-delay: 150ms">
+      {
+        links.map((link) => (
+          <a
+            class="contact-link"
+            href={link.href}
+            target={link.href.startsWith('http') ? '_blank' : undefined}
+            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            <span class="contact-label">{link.label}</span>
+            <span class="contact-value">
+              {link.value}
+              <ArrowUpRight class="arrow" size={18} aria-hidden="true" />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

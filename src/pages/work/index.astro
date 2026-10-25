@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Projects from '../../components/Projects.astro';
+import { site } from '../../data/site';
+
+const description = `Case studies from ${site.name} — enterprise microservices, CQRS query performance, and Golang service architecture.`;
+---
+
+<Base title="Work" description={description}>
+  <PageHeader
+    title="Work"
+    lead="Case studies written the way engineering decisions actually happen — the problem, the approach taken, and what it moved."
+  />
+
+  <section class="section">
+    <span class="legacy-anchor" id="featured" aria-hidden="true"></span>
+    <div class="container">
+      <Projects />
+    </div>
+  </section>
+</Base>

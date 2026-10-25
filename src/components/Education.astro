@@ -1,0 +1,22 @@
+---
+import { education } from '../data/site';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section id="education" class="section">
+  <div class="container">
+    <SectionHeader index="03" title="Education" />
+
+    <div class="education-item" data-reveal>
+      <div class="education-item-left">
+        <div class="education-degree">{education.degree}</div>
+        <div class="education-school">{education.school}</div>
+        <div class="education-year">{education.year}</div>
+      </div>
+      <div class="gpa">
+        <div class="gpa-value">{education.gpa}</div>
+        <div class="gpa-label">GPA / 4.00</div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import { Server, LayoutGrid, Database, Search } from '@lucide/astro';
+import { skills } from '../data/site';
+import SectionHeader from './SectionHeader.astro';
+
+const iconMap: Record<string, typeof Server> = {
+  server: Server,
+  'layout-grid': LayoutGrid,
+  database: Database,
+  search: Search,
+};
+---
+
+<section id="expertise" class="section">
+  <span class="legacy-anchor" id="capabilities" aria-hidden="true"></span>
+  <div class="container">
+    <SectionHeader index="01" title="Expertise" />
+
+    <div class="skills-grid">
+      {
+        skills.map((group, i) => {
+          const Icon = iconMap[group.icon] ?? Server;
+          return (
+            <article class="skill-card" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
+              <div class="skill-icon">
+                <Icon size={24} aria-hidden="true" />
+              </div>
+              <h3 class="skill-category">{group.category}</h3>
+              <div class="skill-list">
+                {group.skills.map((skill) => (
+                  <span class="skill-badge">{skill}</span>
+                ))}
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

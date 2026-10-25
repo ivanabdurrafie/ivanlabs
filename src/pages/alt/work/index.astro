@@ -1,0 +1,22 @@
+---
+import Minimal from '../../../layouts/Minimal.astro';
+import WorkRows from '../../../components/minimal/WorkRows.astro';
+import { site } from '../../../data/site';
+
+const description = `Case studies from ${site.name} — enterprise microservices, CQRS query performance, and Golang service architecture.`;
+---
+
+<Minimal title="Work" description={description}>
+  <header class="m-ph m-container">
+    <span class="label">Work</span>
+    <h1>Work</h1>
+    <hr class="m-rule" />
+    <p class="m-lead" data-reveal>
+      Case studies written the way engineering decisions actually happen — the problem, the approach taken, and what it moved.
+    </p>
+  </header>
+
+  <section class="m-section m-container">
+    <WorkRows />
+  </section>
+</Minimal>

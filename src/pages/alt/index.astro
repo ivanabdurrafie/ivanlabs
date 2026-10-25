@@ -1,0 +1,115 @@
+---
+import Minimal from '../../layouts/Minimal.astro';
+import WorkRows from '../../components/minimal/WorkRows.astro';
+import { site, hero, metrics, skills, withBase } from '../../data/site';
+
+const stack = [...new Set(skills.flatMap((g) => g.skills))];
+
+const links = [
+  { label: 'Email', value: site.email, href: `mailto:${site.email}` },
+  { label: 'GitHub', value: '@ivanabdurrafie', href: site.github },
+  { label: 'LinkedIn', value: 'ivan-abdurrafie', href: site.linkedin },
+];
+
+const description = `Minimal layout — ${site.tagline}`;
+---
+
+<Minimal description={description}>
+  <section class="m-hero m-container">
+    <p class="m-avail label" data-reveal>
+      <span class="m-dot" aria-hidden="true"></span>
+      {site.availability}
+    </p>
+
+    <h1 data-reveal style="--reveal-delay: 70ms">
+      Building <span class="m-ul">enterprise</span> systems.
+    </h1>
+
+    <div class="m-lede" data-reveal style="--reveal-delay: 140ms">
+      {hero.columns.map((col) => <p>{col}</p>)}
+    </div>
+
+    <div class="m-stats" data-reveal style="--reveal-delay: 210ms">
+      {
+        metrics.map((stat) => (
+          <div class="m-stat">
+            <span class="m-stat-num" data-count={stat.value} data-suffix={stat.suffix}>
+              {stat.value}
+              {stat.suffix}
+            </span>
+            <span class="m-stat-label label">{stat.label}</span>
+            <span class="m-stat-ctx">{stat.context}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="m-links" data-reveal style="--reveal-delay: 280ms">
+      <a class="m-link-strong" href={withBase('/alt/work')}>View projects →</a>
+      <a class="m-link" href={withBase(site.resumeFile)}>Download CV</a>
+      <a class="m-link" href={`mailto:${site.email}`}>Contact</a>
+    </div>
+  </section>
+
+  <section class="m-section m-container" aria-label="Stack">
+    <div class="m-gridlabel" data-reveal>
+      <span class="label">Stack</span>
+      <p class="m-stack">
+        {
+          stack.map((s, i) => (
+            <>
+              {i > 0 && <span class="m-sep" aria-hidden="true">·</span>}
+              <span>{s}</span>
+            </>
+          ))
+        }
+      </p>
+    </div>
+  </section>
+
+  <section class="m-section m-container" id="work">
+    <div class="m-head" data-reveal>
+      <span class="m-idx label">01</span>
+      <h2>Selected work</h2>
+      <span class="m-head-note label">3 case studies</span>
+    </div>
+    <WorkRows />
+    <p class="m-more" data-reveal>
+      <a class="m-link-strong" href={withBase('/alt/work')}>All case studies →</a>
+    </p>
+  </section>
+
+  <section class="m-section m-container" id="connect">
+    <div class="m-head" data-reveal>
+      <span class="m-idx label">02</span>
+      <h2>Connect</h2>
+    </div>
+
+    <div data-reveal>
+      <p class="label">Start a conversation</p>
+      <!-- click = open mail client (mailto) AND copy address to clipboard -->
+      <a
+        class="m-email"
+        href={`mailto:${site.email}`}
+        data-copy-email={site.email}
+        aria-label={`Email ${site.email} — copies address to clipboard`}>{site.email}</a
+      >
+    </div>
+
+    <div class="m-contact" data-reveal style="--reveal-delay: 120ms">
+      {
+        links.map((link) => (
+          <a
+            class="m-contact-item"
+            href={link.href}
+            target={link.href.startsWith('http') ? '_blank' : undefined}
+            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            <span class="label">{link.label}</span>
+            <span>{link.value} ↗</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Minimal>

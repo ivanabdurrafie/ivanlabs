@@ -1,0 +1,21 @@
+---
+import { about } from '../data/site';
+---
+
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-content">
+      {
+        about.map((p, i) => (
+          <p
+            class:list={['about-text', { lead: p.lead }]}
+            data-reveal
+            style={`--reveal-delay: ${i * 90}ms`}
+          >
+            {p.text}
+          </p>
+        ))
+      }
+    </div>
+  </div>
+</section>

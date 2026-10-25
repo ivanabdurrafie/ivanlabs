@@ -1,0 +1,24 @@
+---
+import { marquee } from '../data/site';
+
+/* Two identical tracks: the second is aria-hidden and lets the
+   translateX(-50%) loop seamlessly. Pure CSS — no JS, no scroll listener. */
+const tracks = [0, 1];
+---
+
+<section class="marquee" aria-label="Principles">
+  <div class="marquee-track" data-marquee>
+    {
+      tracks.map((t) => (
+        <div class="marquee-group" aria-hidden={t === 1 ? 'true' : undefined}>
+          {marquee.map((phrase) => (
+            <>
+              <span class="marquee-item">{phrase}</span>
+              <span class="marquee-dot" aria-hidden="true" />
+            </>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>

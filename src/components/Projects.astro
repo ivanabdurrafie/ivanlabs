@@ -1,0 +1,11 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+/* Grid only — the page owns the header so home and /work can differ. */
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<div class="projects-grid">
+  {projects.map((project) => <ProjectCard project={project} />)}
+</div>

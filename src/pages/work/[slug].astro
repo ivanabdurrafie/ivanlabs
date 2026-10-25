@@ -1,0 +1,99 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import { ArrowLeft, ArrowRight } from '@lucide/astro';
+import Base from '../../layouts/Base.astro';
+import { site, withBase } from '../../data/site';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const { title, type, stack, metric, metricLabel, summary, impact, tech } = project.data;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: summary,
+  author: {
+    '@type': 'Person',
+    name: site.name,
+    url: site.url,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: site.name,
+  },
+  mainEntityOfPage: `${site.url}/work/${project.id}`,
+};
+---
+
+<Base title={title} description={summary} jsonLd={jsonLd}>
+  <article class="case-hero">
+    <div class="container">
+      <a href={withBase('/#work')} class="case-back">
+        <ArrowLeft size={14} aria-hidden="true" /> All work
+      </a>
+
+      <div class="hero-tagline" data-reveal>
+        <span class="chip">{type}</span>
+        <span class="chip">{stack}</span>
+      </div>
+
+      <h1 class="hero-title" style="font-size: clamp(2.25rem, 7vw, 5.5rem); margin-top: 1.25rem;" data-reveal>
+        {title}
+      </h1>
+
+      <div class="case-metric-strip" data-reveal style="--reveal-delay: 120ms">
+        <div>
+          <div class="stat-number">{metric}</div>
+          <div class="stat-label">{metricLabel}</div>
+        </div>
+        <div>
+          <div class="stat-label" style="margin-top: 0;">Stack</div>
+          <div class="stat-context" style="color: var(--muted); margin-top: 0.35rem;">{stack}</div>
+        </div>
+        <div>
+          <div class="stat-label" style="margin-top: 0;">Year</div>
+          <div class="stat-context" style="color: var(--muted); margin-top: 0.35rem;">2022 — Present</div>
+        </div>
+      </div>
+
+      <p class="about-text lead" data-reveal>{summary}</p>
+
+      <div class="project-impact" style="margin-top: 1.75rem; max-width: 58rem;" data-reveal>
+        <strong>Outcome</strong>
+        {impact}
+      </div>
+
+      <div class="case-body" data-reveal>
+        <Content />
+      </div>
+
+      <div class="project-tech" style="margin-top: 2rem;" data-reveal>
+        {tech.map((tag) => <span class="tech-tag">{tag}</span>)}
+      </div>
+
+      <div class="case-cta" data-reveal>
+        <a href={withBase('/#work')} class="btn btn-secondary">
+          <ArrowLeft size={14} aria-hidden="true" /> All projects
+        </a>
+        <a href={`mailto:${site.email}`} class="btn btn-primary">
+          Discuss a project <ArrowRight class="arrow" size={14} aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  </article>
+</Base>
