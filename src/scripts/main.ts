@@ -15,11 +15,19 @@ import { initHang } from './hang';
 let lenis: Lenis | null = null;
 let rafStarted = false;
 
+declare global {
+  interface Window {
+    /** Live Lenis instance — overlays (⌘K palette) stop/start it around their open state. */
+    __lenis?: Lenis;
+  }
+}
+
 function initSmoothScroll(): void {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   lenis?.destroy();
   lenis = null;
+  window.__lenis = undefined;
 
   if (reduced) return;
 
@@ -27,6 +35,7 @@ function initSmoothScroll(): void {
     duration: 1.1,
     anchors: { offset: -70 },
   });
+  window.__lenis = lenis;
 
   if (rafStarted) return;
   rafStarted = true;

@@ -32,8 +32,16 @@ export function initPalette(): void {
     results.scrollTop = 0;
   };
 
+  // Lenis hijacks every wheel event for the page; mark this layer as opted-out
+  // so the results list scrolls natively, and lock the page behind the overlay.
+  overlay.setAttribute('data-lenis-prevent', '');
+  let savedOverflow = '';
+
   const open = () => {
     overlay.classList.add('open');
+    window.__lenis?.stop();
+    savedOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     input.value = '';
     render();
     input.focus();
@@ -41,6 +49,8 @@ export function initPalette(): void {
 
   const close = (refocus = true) => {
     overlay.classList.remove('open');
+    document.body.style.overflow = savedOverflow;
+    window.__lenis?.start();
     if (refocus) openBtn?.focus();
   };
 
