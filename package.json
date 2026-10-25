@@ -13,7 +13,7 @@
     "qa": "node qa/shoot.mjs"
   },
   "engines": {
-    "node": ">=22.12"
+    "node": ">=22.23.4"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

@@ -16,7 +16,7 @@ Strict black & white with one surgical accent (signal green `#d3ff3f`): hero hig
 ## Commands
 
 ```bash
-npm install       # needs Node >= 22.12 (Astro 7)
+npm install       # needs Node >= 22.23.4 (Astro 7 runtime floor)
 npm run dev       # dev server at localhost:4321/ivanlabs
 npm run build     # static output → dist/
 npm run preview   # serve the build (runs as a daemon: astro preview stop)
