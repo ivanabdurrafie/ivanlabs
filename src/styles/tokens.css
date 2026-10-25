@@ -81,3 +81,22 @@
   --inverse-line: hsl(0 0% 0% / 0.16);
   --inverse-muted: hsl(0 0% 0% / 0.55);
 }
+
+/* --- Theme swap: circular wipe expanding from the toggle button.
+       scripts/theme.ts adds .theme-swap, sets --theme-swap-x/y to the
+       click origin, and animates the new-root clip-path via WAAPI.
+       Scoped so the navigation cross-fade in base.css stays untouched. --- */
+html.theme-swap::view-transition-old(root),
+html.theme-swap::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html.theme-swap::view-transition-old(root) {
+  z-index: 0;
+}
+
+html.theme-swap::view-transition-new(root) {
+  z-index: 1;
+  clip-path: circle(0 at var(--theme-swap-x, 50%) var(--theme-swap-y, 50%));
+}
